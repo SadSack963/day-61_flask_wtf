@@ -14,10 +14,7 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     login_form = LoginForm()
-    # if f.validate_on_submit():
-    #     return render_template('success.html')
-    # else:
-    #     return render_template('denied.html')
+    login_form.validate_on_submit()
     return render_template('login.html', form=login_form)
 
 
