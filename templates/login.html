@@ -1,48 +1,23 @@
-<!DOCTYPE HTML>
+<!--#1. This line of code tells the templating engine (Jinja) to use
+"venv/Lib/site-packages/flask_bootstrap/templates/bootstrap/base.html" as the template for this page.-->
+{% extends "bootstrap/base.html" %}
 
-<html>
-<head>
-    <title>Login</title>
+<!-- import HTML from "venv/Lib/site-packages/flask_bootstrap/templates/bootstrap/wtf.html" -->
+{% import 'bootstrap/wtf.html' as wtf %}
 
-    <!-- Link to Bootstrap CSS -->
-    <!-- Loads CSS from Content Delivery Network (CDN) if it does not already exist on the user's browser -->
-    <!-- This is faster than loading Bootstrap from CSS included with the web page, because the browser caches the external CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--#2. This block inserts a custom title into the header of the template.-->
+{% block title %}Login{% endblock %}
 
-    <!-- Optional Javascript required by Bootstrap -->
-    <!-- jQuery, Popper, Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+<!--#3. This block provides the content of the website. The part that is going to vary between webpages.-->
+{% block content %}
 
-</head>
-<body>
+<link href="/static/my_styles.css" rel="stylesheet">
+
 <div class="container">
     <h1>Login</h1>
 
-<!-- Turn off browser validation to make sure that we are giving all users field validation -->
-    <form method="POST" action="{{ url_for('login') }}" novalidate>
-        {{ form.csrf_token }}
-        <p>{{ form.email.label }} {{ form.email(size=30) }}
-            {% for error in form.email.errors %}
-            <span style="color:red">{{ error }}</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.password.label }} {{ form.password(size=30) }}
-            {% for error in form.password.errors %}
-            <span style="color:red">{{ error }}</span>
-            {% endfor %}
-        </p>
-        {{ form.submit }}
-    </form>
+    {{ wtf.quick_form(form, novalidate=True) }}
 
 </div>
-</body>
-</html>
+
+{% endblock %}

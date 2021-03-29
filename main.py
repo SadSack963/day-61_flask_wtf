@@ -4,12 +4,26 @@ from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
-Bootstrap(app)
 app.secret_key = "my secret key"  # Use .env
+
+# This line sets defaults in app.config.*
+#   'BOOTSTRAP_USE_MINIFIED' = {bool} True
+#   'BOOTSTRAP_CDN_FORCE_SSL' = {bool} False
+#   'BOOTSTRAP_QUERYSTRING_REVVING' = {bool} True
+#   'BOOTSTRAP_SERVE_LOCAL' = {bool} False
+#   'BOOTSTRAP_LOCAL_SUBDOMAIN' = {NoneType} None
+# Also adds app.blueprints.bootstrap.*, e.g.
+#   jinja_loader
+#   root_path = {str} 'E:\\Python\\Projects\\day-61_flask_wtf\\venv\\lib\\site-packages\\flask_bootstrap'
+#   static_folder = {str} 'E:\\Python\\Projects\\day-61_flask_wtf\\venv\\lib\\site-packages\\flask_bootstrap\\static'
+#   static_url_path = {str} '/static/bootstrap'
+#   etc.
+Bootstrap(app)
 
 
 @app.route("/")
 def home():
+    print(app.static_url_path)
     return render_template('index.html')
 
 
