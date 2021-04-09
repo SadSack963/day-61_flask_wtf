@@ -23,7 +23,7 @@ Bootstrap(app)
 
 @app.route("/")
 def home():
-    print(app.static_url_path)
+    # print(app.static_url_path)
     return render_template('index.html')
 
 
@@ -34,8 +34,12 @@ def login():
         if login_form.email.data == 'admin@email.com' and \
                 login_form.password.data == '12345678':
             return redirect(url_for('success'))
+            # return redirect('/success')
+            # return render_template('success.html')
         else:
             return redirect(url_for('denied'))
+            # return redirect('/denied')
+            # return render_template('denied.html')
     return render_template('login.html', form=login_form)
 
 
