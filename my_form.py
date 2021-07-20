@@ -4,7 +4,8 @@ from wtforms.validators import DataRequired, InputRequired, Email, Length
 
 # https://wtforms.readthedocs.io/en/2.3.x/validators/#module-wtforms.validators
 # Email() requires WTForms email_validator package:
-#   pip install wtforms[email]
+#       pip install wtforms[email]
+# or    pip install email-validator
 
 
 class LoginForm(FlaskForm):

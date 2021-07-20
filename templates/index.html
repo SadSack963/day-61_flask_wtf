@@ -14,7 +14,16 @@
         <p>Are you ready to discover my secret?</p>
 <!--        You cannot have an href field in an HTML button-->
 <!--        <button class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Login</button>-->
-        <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}">Login</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}">
+            Login
+        </a>
+        <p></p>
+<!--        Alternative - button inside an anchor tag -->
+        <a href="{{ url_for('login') }}">
+            <button class="btn btn-primary btn-lg">
+                Login
+            </button>
+        </a>
 
     </div>
 </div>
