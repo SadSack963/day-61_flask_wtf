@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, EmailField
 from wtforms.validators import DataRequired, InputRequired, Email, Length
 
 # https://wtforms.readthedocs.io/en/2.3.x/validators/#module-wtforms.validators
@@ -9,9 +9,14 @@ from wtforms.validators import DataRequired, InputRequired, Email, Length
 
 
 class LoginForm(FlaskForm):
-    email = StringField(
+    # email = StringField(
+    #     label='Email',
+    #     validators=[InputRequired(), Email(check_deliverability=True)],
+    #     render_kw={'style': 'width: 30ch'}
+    # )
+    email = EmailField(
         label='Email',
-        validators=[InputRequired(), Email(check_deliverability=True)],
+        validators=[DataRequired(), Email(check_deliverability=True)],
         render_kw={'style': 'width: 30ch'}
     )
     password = PasswordField(
